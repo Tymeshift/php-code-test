@@ -16,7 +16,10 @@ class TaskStorage
 
     public function getByScheduleId(int $id): array
     {
-
+        return $this->client->request(
+            'GET',
+            'https://tymeshift.com/get-by-schedule-id/' . $id
+        );
     }
 
     public function getByIds(array $ids): array

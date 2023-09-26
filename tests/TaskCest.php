@@ -11,6 +11,7 @@ use Tymeshift\PhpTest\Domains\Task\TaskCollection;
 use Tymeshift\PhpTest\Domains\Task\TaskFactory;
 use Tymeshift\PhpTest\Domains\Task\TaskRepository;
 use Tymeshift\PhpTest\Domains\Task\TaskStorage;
+use Tymeshift\PhpTest\Exceptions\InvalidCollectionDataProvidedException;
 
 class TaskCest
 {
@@ -20,11 +21,16 @@ class TaskCest
      */
     private $taskRepository;
 
+    /**
+     * @var Mock|HttpClientInterface
+     */
+    private $httpClientMock;
+
 
     public function _before()
     {
-        $httpClientMock = \Mockery::mock(HttpClientInterface::class);
-        $storage = new TaskStorage($httpClientMock);
+        $this->httpClientMock = \Mockery::mock(HttpClientInterface::class);
+        $storage = new TaskStorage($this->httpClientMock);
         $this->taskRepository = new TaskRepository($storage, new TaskFactory());
     }
 
@@ -36,9 +42,16 @@ class TaskCest
 
     /**
      * @dataProvider tasksDataProvider
+     * @throws InvalidCollectionDataProvidedException
      */
     public function testGetTasks(Example $example, \UnitTester $tester)
     {
+        $data = (array) $example->getIterator();
+        $this->httpClientMock->shouldReceive('request')
+            ->once()
+            ->with('GET', 'https://tymeshift.com/get-by-schedule-id/1')
+            ->andReturn($data);
+
         $tasks = $this->taskRepository->getByScheduleId(1);
         $tester->assertInstanceOf(TaskCollection::class, $tasks);
     }
@@ -50,7 +63,7 @@ class TaskCest
         });
     }
 
-    public function tasksDataProvider()
+    public function tasksDataProvider(): array
     {
         return [
             [
