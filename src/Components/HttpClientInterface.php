@@ -10,5 +10,5 @@ interface HttpClientInterface
      * @param string $uri
      * @return array
      */
-    public function request(string $method, string $uri):array;
+    public function request(string $method, string $uri): array;
 }
