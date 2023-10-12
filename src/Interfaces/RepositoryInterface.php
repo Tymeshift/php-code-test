@@ -3,9 +3,25 @@ declare(strict_types=1);
 
 namespace Tymeshift\PhpTest\Interfaces;
 
+use Tymeshift\PhpTest\Exceptions\InvalidCollectionDataProvidedException;
+
+/**
+ * @template TEntity of EntityInterface
+ * @template TCollection of CollectionInterface
+ */
 interface RepositoryInterface
 {
-    public function getById(int $id):EntityInterface;
+    /**
+     * @return TEntity
+     */
+    public function getById(int $id): EntityInterface;
 
-    public function getByIds(array $ids):CollectionInterface;
+    /**
+     * @param array<int> $ids
+     *
+     * @return TCollection
+     *
+     * @throws InvalidCollectionDataProvidedException
+     */
+    public function getByIds(array $ids): CollectionInterface;
 }

@@ -3,105 +3,81 @@ declare(strict_types=1);
 
 namespace Tymeshift\PhpTest\Domains\Schedule;
 
-use DateTime;
 use Tymeshift\PhpTest\Interfaces\EntityInterface;
 
-class ScheduleEntity implements EntityInterface
+final class ScheduleEntity implements EntityInterface
 {
-    /**
-     * @var int
-     */
     private int $id;
 
-    /**
-     * @var string
-     */
     private string $name;
 
-    /**
-     * @var DateTime
-     */
-    private DateTime $startTime;
+    private \DateTimeInterface $startTime;
 
-    /**
-     * @var DateTime
-     */
-    private DateTime $endTime;
+    private \DateTimeInterface $endTime;
 
     /**
      * @var ScheduleItemInterface[]
      */
     private array $items;
 
-    /**
-     * @return int
-     */
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @param int $id
-     * @return ScheduleEntity
-     */
     public function setId(int $id): ScheduleEntity
     {
         $this->id = $id;
         return $this;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     * @return ScheduleEntity
-     */
     public function setName(string $name): ScheduleEntity
     {
         $this->name = $name;
         return $this;
     }
 
-    /**
-     * @return DateTime
-     */
-    public function getStartTime(): DateTime
+    public function getStartTime(): \DateTimeInterface
     {
         return $this->startTime;
     }
 
-    /**
-     * @param DateTime $startTime
-     * @return ScheduleEntity
-     */
-    public function setStartTime(DateTime $startTime): ScheduleEntity
+    public function setStartTime(\DateTimeInterface $startTime): ScheduleEntity
     {
         $this->startTime = $startTime;
+
         return $this;
     }
 
-    /**
-     * @return DateTime
-     */
-    public function getEndTime(): DateTime
+    public function getEndTime(): \DateTimeInterface
     {
         return $this->endTime;
     }
 
-    /**
-     * @param DateTime $endTime
-     * @return ScheduleEntity
-     */
-    public function setEndTime(DateTime $endTime): ScheduleEntity
+    public function setEndTime(\DateTimeInterface $endTime): ScheduleEntity
     {
         $this->endTime = $endTime;
+
+        return $this;
+    }
+
+    /**
+     * @return ScheduleItemInterface[]
+     */
+    public function getItems(): array
+    {
+        return $this->items;
+    }
+
+    public function addItem(ScheduleItemInterface $item): self
+    {
+        $this->items[] = $item;
+
         return $this;
     }
 }

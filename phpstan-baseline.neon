@@ -1,0 +1,201 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface\\:\\:getId\\(\\)\\.$#"
+			count: 2
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Call to an undefined method TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface\\:\\:toArray\\(\\)\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Call to method build\\(\\) on an unknown class Tymeshift\\\\PhpTest\\\\Base\\\\FactoryInterfaceAlias\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Class Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection has @extends tag, but does not extend any class\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Class Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection implements generic interface Tymeshift\\\\PhpTest\\\\Interfaces\\\\CollectionInterface but does not specify its types\\: TValue, TFactory$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Generic type ArrayAccess\\<Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface\\> in PHPDoc tag @implements does not specify all template types of interface ArrayAccess\\: TKey, TValue$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:add\\(\\) return type has no value type specified in iterable type Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:add\\(\\) return type with generic class Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection does not specify its types\\: TValue, TFactory$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:buildFromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:buildFromArray\\(\\) return type has no value type specified in iterable type Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:buildFromArray\\(\\) return type with generic class Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection does not specify its types\\: TValue, TFactory$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:createFromArray\\(\\) has parameter \\$data with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:createFromArray\\(\\) has parameter \\$factory with generic interface Tymeshift\\\\PhpTest\\\\Interfaces\\\\FactoryInterface but does not specify its types\\: TData, TCollection$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:createFromArray\\(\\) return type has no value type specified in iterable type Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:createFromArray\\(\\) return type with generic class Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection does not specify its types\\: TValue, TFactory$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:filter\\(\\) should return \\$this\\(Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface, TFactory of Tymeshift\\\\PhpTest\\\\Interfaces\\\\FactoryInterface\\>\\) but returns static\\(Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface, TFactory of Tymeshift\\\\PhpTest\\\\Interfaces\\\\FactoryInterface\\>\\)\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:getAssoc\\(\\) has invalid return type Tymeshift\\\\PhpTest\\\\Base\\\\Collection\\.$#"
+			count: 2
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:getAssoc\\(\\) should return Tymeshift\\\\PhpTest\\\\Base\\\\Collection but returns static\\(Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface, TFactory of Tymeshift\\\\PhpTest\\\\Interfaces\\\\FactoryInterface\\>\\)\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:getIds\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:getIterator\\(\\) return type has no value type specified in iterable type Traversable\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:isEntity\\(\\) has parameter \\$item with no type specified\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:last\\(\\) should return Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface but returns \\(TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface\\)\\|false\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:map\\(\\) should return \\$this\\(Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface, TFactory of Tymeshift\\\\PhpTest\\\\Interfaces\\\\FactoryInterface\\>\\) but returns static\\(Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface, TFactory of Tymeshift\\\\PhpTest\\\\Interfaces\\\\FactoryInterface\\>\\)\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:pluck\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:toArray\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:toJson\\(\\) has no return type specified\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:toJson\\(\\) has parameter \\$options with no type specified\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Parameter \\#1 \\$key \\(string\\) of method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:offsetUnset\\(\\) should be compatible with parameter \\$offset \\(Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface\\) of method ArrayAccess\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface,mixed\\>\\:\\:offsetUnset\\(\\)$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of function array_key_exists expects int\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Parameter \\$factory of method Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\:\\:buildFromArray\\(\\) has invalid type Tymeshift\\\\PhpTest\\\\Base\\\\FactoryInterfaceAlias\\.$#"
+			count: 2
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Property Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface,TFactory of Tymeshift\\\\PhpTest\\\\Interfaces\\\\FactoryInterface\\>\\:\\:\\$items \\(array\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface\\>\\) does not accept array\\.$#"
+			count: 2
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Property Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface,TFactory of Tymeshift\\\\PhpTest\\\\Interfaces\\\\FactoryInterface\\>\\:\\:\\$items \\(array\\<TValue of Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface\\>\\) does not accept array\\<Tymeshift\\\\PhpTest\\\\Interfaces\\\\EntityInterface\\>\\.$#"
+			count: 2
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Unsafe usage of new static\\(\\)\\.$#"
+			count: 3
+			path: src/Base/BaseCollection.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Domains\\\\Schedule\\\\ScheduleFactory\\:\\:createCollection\\(\\) should return Tymeshift\\\\PhpTest\\\\Domains\\\\Schedule\\\\ScheduleCollection but returns Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\.$#"
+			count: 1
+			path: src/Domains/Schedule/ScheduleFactory.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Domains\\\\Schedule\\\\ScheduleStorage\\:\\:getById\\(\\) should return array\\{id\\?\\: int, start_time\\?\\: int, end_time\\?\\: int, name\\?\\: string\\} but returns array\\.$#"
+			count: 1
+			path: src/Domains/Schedule/ScheduleStorage.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Domains\\\\Schedule\\\\ScheduleStorage\\:\\:getByIds\\(\\) should return array\\<array\\{id\\?\\: int, start_time\\?\\: int, end_time\\?\\: int, name\\?\\: string\\}\\> but returns array\\.$#"
+			count: 1
+			path: src/Domains/Schedule/ScheduleStorage.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Domains\\\\Task\\\\TaskFactory\\:\\:createCollection\\(\\) should return Tymeshift\\\\PhpTest\\\\Domains\\\\Task\\\\TaskCollection but returns Tymeshift\\\\PhpTest\\\\Base\\\\BaseCollection\\.$#"
+			count: 1
+			path: src/Domains/Task/TaskFactory.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Domains\\\\Task\\\\TaskStorage\\:\\:getById\\(\\) should return array\\{id\\?\\: int, start_time\\?\\: int, duration\\?\\: int, schedule_id\\?\\: int\\} but returns array\\.$#"
+			count: 1
+			path: src/Domains/Task/TaskStorage.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Domains\\\\Task\\\\TaskStorage\\:\\:getByIds\\(\\) should return array\\<array\\{id\\?\\: int, start_time\\?\\: int, duration\\?\\: int, schedule_id\\?\\: int\\}\\> but returns array\\.$#"
+			count: 1
+			path: src/Domains/Task/TaskStorage.php
+
+		-
+			message: "#^Method Tymeshift\\\\PhpTest\\\\Domains\\\\Task\\\\TaskStorage\\:\\:getByScheduleId\\(\\) should return array\\<array\\{id\\?\\: int, start_time\\?\\: int, duration\\?\\: int, schedule_id\\?\\: int\\}\\> but returns array\\.$#"
+			count: 1
+			path: src/Domains/Task/TaskStorage.php
