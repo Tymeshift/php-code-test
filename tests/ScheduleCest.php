@@ -1,37 +1,36 @@
 <?php
 declare(strict_types=1);
+
 namespace Tests;
 
 use Codeception\Example;
-use Mockery\MockInterface;
-use Tymeshift\PhpTest\Domains\Schedule\ScheduleRepository;
+use Mockery;
+use Tymeshift\PhpTest\Components\DatabaseInterface;
 use Tymeshift\PhpTest\Domains\Schedule\ScheduleFactory;
+use Tymeshift\PhpTest\Domains\Schedule\ScheduleRepository;
+use Tymeshift\PhpTest\Domains\Schedule\ScheduleRepositoryInterface;
 use Tymeshift\PhpTest\Domains\Schedule\ScheduleStorage;
+use Tymeshift\PhpTest\Domains\Schedule\ScheduleStorageInterface;
 use Tymeshift\PhpTest\Exceptions\StorageDataMissingException;
 
-class ScheduleCest
+final class ScheduleCest
 {
+    private ?DatabaseInterface $databaseMock;
+    private ?ScheduleStorageInterface $scheduleStorage;
+    private ?ScheduleRepositoryInterface $scheduleRepository;
 
-    /**
-     * @var MockInterface|ScheduleStorage
-     */
-    private $scheduleStorageMock;
-
-    /**
-     * @var ScheduleRepository
-     */
-    private $scheduleRepository;
-    
     public function _before()
     {
-        $this->scheduleStorageMock = \Mockery::mock(ScheduleStorage::class);
-        $this->scheduleRepository = new ScheduleRepository($this->scheduleStorageMock, new ScheduleFactory());
+        $this->databaseMock = Mockery::mock(DatabaseInterface::class);
+        $this->scheduleStorage = new ScheduleStorage($this->databaseMock);
+        $this->scheduleRepository = new ScheduleRepository($this->scheduleStorage, new ScheduleFactory());
     }
 
     public function _after()
     {
+        $this->databaseMock = null;
         $this->scheduleRepository = null;
-        $this->scheduleStorageMock = null;
+        $this->scheduleStorage = null;
         \Mockery::close();
     }
 
@@ -43,10 +42,10 @@ class ScheduleCest
         ['id' => $id, 'start_time' => $startTime, 'end_time' => $endTime, 'name' => $name] = $example;
         $data = ['id' => $id, 'start_time' => $startTime, 'end_time' => $endTime, 'name' => $name];
 
-        $this->scheduleStorageMock
-            ->shouldReceive('getById')
-            ->with($id)
-            ->andReturn(['id' => $id, 'start_time' => $startTime, 'end_time' => $endTime, 'name' => $name]);
+        $this->databaseMock
+            ->shouldReceive('query')
+            ->with('SELECT * FROM schedules WHERE id=:id', ['id' => $id])
+            ->andReturn($data);
 
         $entity = $this->scheduleRepository->getById($id);
         $tester->assertEquals($id, $entity->getId());
@@ -59,9 +58,9 @@ class ScheduleCest
      */
     public function testGetByIdFail(\UnitTester $tester)
     {
-        $this->scheduleStorageMock
-            ->shouldReceive('getById')
-            ->with(4)
+        $this->databaseMock
+            ->shouldReceive('query')
+            ->with('SELECT * FROM schedules WHERE id=:id', ['id' => 4])
             ->andReturn([]);
         $tester->expectThrowable(StorageDataMissingException::class, function () {
             $this->scheduleRepository->getById(4);
@@ -69,7 +68,12 @@ class ScheduleCest
     }
 
     /**
-     * @return array[]
+     * @return array<array{
+     *      id: int,
+     *      start_time: int,
+     *      end_time: int,
+     *      name: string
+     *  }>
      */
     protected function scheduleProvider()
     {

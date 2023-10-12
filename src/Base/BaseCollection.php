@@ -13,14 +13,26 @@ use Tymeshift\PhpTest\Interfaces\CollectionInterface;
 use Tymeshift\PhpTest\Interfaces\EntityInterface;
 use Tymeshift\PhpTest\Interfaces\FactoryInterface;
 
-abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAccess, JsonSerializable, CollectionInterface
+/**
+ * @template TValue of EntityInterface
+ * @template TFactory of FactoryInterface
+ * @template-extends CollectionInterface<TValue, TFactory>
+ * @implements ArrayAccess<TValue>
+ * @implements IteratorAggregate<TValue>
+ */
+abstract class BaseCollection implements
+    IteratorAggregate,
+    Countable,
+    ArrayAccess,
+    JsonSerializable,
+    CollectionInterface
 {
-    /** @var EntityInterface[] */
+    /** @var array<TValue> */
     protected $items = [];
 
     /**
      * BaseCollection constructor.
-     * @param array $data
+     * @param array<TValue> $data
      */
     public function __construct(array $data = [])
     {
@@ -37,9 +49,10 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
      * @param EntityInterface $entity
      * @return BaseCollection
      */
-    public function add(EntityInterface $entity):CollectionInterface
+    public function add(EntityInterface $entity): CollectionInterface
     {
         $this->items[] = $entity;
+
         return $this;
     }
 
@@ -66,7 +79,7 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
     /**
      * @return array
      */
-    public function toArray():array
+    public function toArray(): array
     {
         $result = [];
 
@@ -92,7 +105,7 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
     public function search($key, $value)
     {
         foreach ($this->items as $item) {
-            if ($item->{'get' . $key}() === $value) {
+            if ($item->{'get'.$key}() === $value) {
                 return $item;
             }
         }
@@ -109,11 +122,13 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
     public function remove($key, $value)
     {
         foreach ($this->items as $index => $item) {
-            if ($item->{'get' . $key}() === $value) {
+            if ($item->{'get'.$key}() === $value) {
                 unset($this->items[$index]);
+
                 return true;
             }
         }
+
         return null;
     }
 
@@ -246,7 +261,7 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
     /**
      * Execute a callback over each item.
      *
-     * @param  callable  $callback
+     * @param callable $callback
      * @return $this
      */
     public function each(callable $callback): self
@@ -256,6 +271,7 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
                 break;
             }
         }
+
         return $this;
     }
 
@@ -289,6 +305,7 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
                 return $entity;
             }
         }
+
         return null;
     }
 
@@ -300,8 +317,9 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
     {
         $data = [];
         foreach ($this->items as $entity) {
-            $data[] = $entity->{'get' . ucfirst($property)}();
+            $data[] = $entity->{'get'.ucfirst($property)}();
         }
+
         return $data;
     }
 
@@ -310,11 +328,11 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
      * @return Collection
      * @throws InvalidCollectionDataProvidedException
      */
-    public function getAssoc(string $property = 'id'):Collection
+    public function getAssoc(string $property = 'id'): Collection
     {
         $items = [];
         foreach ($this->items as $index => $entity) {
-            $newKey = $entity->{'get' . ucfirst($property)}();
+            $newKey = $entity->{'get'.ucfirst($property)}();
             $items[$newKey] = $this->items[$index];
         }
 
@@ -330,16 +348,18 @@ abstract class BaseCollection implements IteratorAggregate, Countable, ArrayAcce
         foreach ($this->items as $entity) {
             $result[] = $entity->getId();
         }
+
         return array_unique($result);
     }
 
     /**
      * @return EntityInterface
      */
-    public function last():EntityInterface
+    public function last(): EntityInterface
     {
         $lastItem = end($this->items);
         reset($this->items);
+
         return $lastItem;
     }
 }

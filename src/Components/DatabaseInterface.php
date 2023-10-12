@@ -7,8 +7,8 @@ interface DatabaseInterface
 {
     /**
      * @param string $query
-     * @param array $params
-     * @return array
+     * @param array<string, mixed> $params
+     * @return array<mixed>
      */
     public function query(string $query, array $params):array;
 }

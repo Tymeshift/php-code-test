@@ -1,16 +1,21 @@
 <?php
+declare(strict_types=1);
 
 namespace Tymeshift\PhpTest\Domains\Schedule;
 
-use Cassandra\Date;
-use Tymeshift\PhpTest\Interfaces\CollectionInterface;
-use Tymeshift\PhpTest\Interfaces\EntityInterface;
 use Tymeshift\PhpTest\Interfaces\FactoryInterface;
 
-class ScheduleFactory implements FactoryInterface
+/**
+ * @implements  FactoryInterface<array{
+ *       id?: int,
+ *       start_time?: int,
+ *       end_time?: int,
+ *       name?: string
+ *   }, ScheduleCollection>
+ */
+final class ScheduleFactory implements FactoryInterface
 {
-
-    public function createEntity(array $data): EntityInterface
+    public function createEntity(array $data): ScheduleEntity
     {
         $entity = new ScheduleEntity();
         if (isset($data['id']) && is_int($data['id'])) {
@@ -30,5 +35,10 @@ class ScheduleFactory implements FactoryInterface
         }
 
         return $entity;
+    }
+
+    public function createCollection(array $data): ScheduleCollection
+    {
+        return (new ScheduleCollection())->createFromArray($data, $this);
     }
 }
